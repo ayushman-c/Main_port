@@ -95,7 +95,7 @@ export default function Navbar() {
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
           scrolled
-            ? 'bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-zinc-200/50 dark:border-zinc-800/50'
+            ? 'bg-white/95 dark:bg-black/95 backdrop-blur-xl border-b border-zinc-200/50 dark:border-zinc-800/50'
             : 'bg-transparent',
           hideNav && !menuOpen ? '-translate-y-full' : 'translate-y-0'
         )}
