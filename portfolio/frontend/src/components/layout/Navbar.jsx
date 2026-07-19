@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { label: 'About',    href: '#about' },
   { label: 'Skills',   href: '#skills' },
   { label: 'Projects', href: '#projects' },
-  { label: 'GitHub',   href: '#github' },
+  
   { label: 'Contact',  href: '#contact' },
 ]
 
@@ -124,6 +124,7 @@ export default function Navbar() {
                   <li key={label}>
                     <a
                       href={href}
+                      onClick={(e) => handleNavClick(e, href)}
                       className={cn(
                         'relative px-3 py-1.5 rounded-lg text-sm font-medium transition-colors duration-200',
                         isActive
@@ -216,7 +217,7 @@ export default function Navbar() {
               <li key={label}>
                 <a
                   href={href}
-                  onClick={() => setMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, href)}
                   className="block px-4 py-3 rounded-xl text-base font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
                 >
                   {label}

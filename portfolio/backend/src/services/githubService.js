@@ -15,7 +15,7 @@ const ghApi = axios.create({
   },
 })
 
-const USERNAME = () => process.env.GITHUB_USERNAME || 'ayushman-git'
+const USERNAME = () => process.env.GITHUB_USERNAME || 'ayushman-c'
 
 /**
  * Fetch public repositories sorted by last push.

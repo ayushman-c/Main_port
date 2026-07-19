@@ -83,7 +83,7 @@ MAIL_FROM="Portfolio Contact <your@gmail.com>"
 
 # GitHub
 GITHUB_TOKEN=ghp_your_token
-GITHUB_USERNAME=ayushman-git
+GITHUB_USERNAME=ayushman-c
 
 # Admin
 ADMIN_SECRET=random_secret_string

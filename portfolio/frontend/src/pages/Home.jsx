@@ -33,10 +33,8 @@ export default function Home() {
         <Skills />
         <Projects />
         <Suspense fallback={<SectionFallback />}>
-          <GitHub />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
-          <CodingProfiles />
         </Suspense>
         <Resume />
         <Contact />

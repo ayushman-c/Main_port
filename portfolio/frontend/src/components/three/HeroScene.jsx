@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber'
-import { Suspense } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import FloatingGeometry from './FloatingGeometry'
 
 /**
@@ -7,6 +7,20 @@ import FloatingGeometry from './FloatingGeometry'
  * Uses alpha canvas, no background — integrates with CSS background.
  */
 export default function HeroScene() {
+  const [hasWebGL, setHasWebGL] = useState(true)
+
+  useEffect(() => {
+    try {
+      const canvas = document.createElement('canvas')
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
+      if (!gl) setHasWebGL(false)
+    } catch (e) {
+      setHasWebGL(false)
+    }
+  }, [])
+
+  if (!hasWebGL) return null
+
   return (
     <Canvas
       className="w-full h-full"

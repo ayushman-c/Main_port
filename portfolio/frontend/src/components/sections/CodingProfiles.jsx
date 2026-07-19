@@ -7,7 +7,7 @@ import { certifications } from '../../data/skills'
 gsap.registerPlugin(ScrollTrigger)
 
 const LEETCODE_USERNAME = 'ayushman-dev'
-const GITHUB_USERNAME   = 'ayushman-git'
+const GITHUB_USERNAME   = 'ayushman-c'
 
 const profiles = [
   {

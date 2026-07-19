@@ -27,14 +27,31 @@ export function useLenis() {
 
     // Sync with GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update)
+    window.lenis = lenis
 
-    const tick = gsap.ticker.add((time) => {
+    const tick = (time) => {
       lenis.raf(time * 1000)
-    })
+    }
+    gsap.ticker.add(tick)
 
     gsap.ticker.lagSmoothing(0)
 
+    // Intercept anchor links for smooth scrolling via event delegation
+    const handleAnchorClick = (e) => {
+      const target = e.target.closest('a')
+      if (!target) return
+      
+      const href = target.getAttribute('href')
+      if (href?.startsWith('#') && href.length > 1) {
+        e.preventDefault()
+        lenis.scrollTo(href, { offset: -80 }) // Offset for fixed navbar
+      }
+    }
+
+    document.addEventListener('click', handleAnchorClick)
+
     return () => {
+      document.removeEventListener('click', handleAnchorClick)
       gsap.ticker.remove(tick)
       lenis.destroy()
     }

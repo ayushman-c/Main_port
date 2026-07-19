@@ -202,7 +202,7 @@ export default function Projects() {
 
         <div className="mt-12 text-center">
           <a
-            href="https://github.com/ayushman-git"
+            href="https://github.com/ayushman-c"
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-ghost btn-lg inline-flex"

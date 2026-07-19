@@ -185,9 +185,9 @@ export default function Hero() {
         {/* Social quick links */}
         <div className="hero-social flex items-center gap-5">
           {[
-            { label: 'GitHub',   href: 'https://github.com/ayushman-git' },
-            { label: 'LinkedIn', href: 'https://linkedin.com/in/ayushman-chakraborty' },
-            { label: 'Twitter',  href: 'https://twitter.com/ayushman_dev' },
+            { label: 'GitHub',   href: 'https://github.com/ayushman-c' },
+            { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ayushman-chakraborty-aaa612364/' },
+            { label: 'Twitter',  href: 'https://x.com/ayushman_hex9' },
           ].map(({ label, href }) => (
             <a
               key={label}
@@ -202,12 +202,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <span className="text-[10px] font-mono tracking-[0.2em] uppercase text-zinc-400">Scroll</span>
-        <div className="w-px h-12 bg-gradient-to-b from-zinc-400 to-transparent animate-pulse" />
-        <ArrowDown />
-      </div>
+      
     </section>
   )
 }

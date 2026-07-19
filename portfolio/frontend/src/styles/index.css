@@ -19,7 +19,7 @@
     @apply bg-white text-zinc-900 font-sans overflow-x-hidden;
   }
 
-  .dark body,
+  html.dark body,
   :root.dark {
     @apply bg-black text-zinc-100;
   }

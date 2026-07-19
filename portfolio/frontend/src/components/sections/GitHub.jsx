@@ -6,7 +6,7 @@ import SectionHeading from '../ui/SectionHeading'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const GITHUB_USERNAME = 'ayushman-git'
+const GITHUB_USERNAME = 'ayushman-c'
 
 // Skeleton loader
 function Skeleton({ className = '' }) {
@@ -101,6 +101,7 @@ export default function GitHub() {
   const [stats,   setStats]   = useState(null)
   const [loading, setLoading] = useState(true)
   const [error,   setError]   = useState(null)
+  const [chartError, setChartError] = useState(false)
   const sectionRef = useRef(null)
 
   useEffect(() => {
@@ -113,9 +114,23 @@ export default function GitHub() {
 
         if (reposRes.status === 'fulfilled') {
           setRepos(reposRes.value.data.slice(0, 6))
+        } else {
+          // Fallback to direct GitHub API if backend is down
+          const fallbackRepos = await axios.get(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`)
+          setRepos(fallbackRepos.data)
         }
+        
         if (statsRes.status === 'fulfilled') {
           setStats(statsRes.value.data)
+        } else {
+          // Fallback to direct GitHub API if backend is down
+          const fallbackUser = await axios.get(`https://api.github.com/users/${GITHUB_USERNAME}`)
+          setStats({
+            publicRepos: fallbackUser.data.public_repos,
+            followers: fallbackUser.data.followers,
+            following: fallbackUser.data.following,
+            totalStars: '—', // Can't easily get total stars without backend aggregation
+          })
         }
       } catch {
         setError('Unable to load GitHub data.')
@@ -165,12 +180,17 @@ export default function GitHub() {
         <div className="github-item mb-12 card p-6 overflow-hidden">
           <p className="section-label mb-4">Contribution Graph</p>
           <div className="overflow-x-auto no-scrollbar">
-            <img
-              src={`https://ghchart.rshah.org/${GITHUB_USERNAME}`}
-              alt={`${GITHUB_USERNAME}'s GitHub contribution chart`}
-              className="w-full min-w-[600px] rounded-lg dark:invert dark:brightness-50 dark:contrast-125"
-              loading="lazy"
-            />
+            {chartError ? (
+              <p className="text-sm text-zinc-500 py-4">Contribution graph currently unavailable.</p>
+            ) : (
+              <img
+                src={`https://ghchart.rshah.org/${GITHUB_USERNAME}`}
+                alt={`${GITHUB_USERNAME}'s GitHub contribution chart`}
+                className="w-full min-w-[600px] rounded-lg dark:invert dark:brightness-50 dark:contrast-125"
+                loading="lazy"
+                onError={() => setChartError(true)}
+              />
+            )}
           </div>
         </div>
 

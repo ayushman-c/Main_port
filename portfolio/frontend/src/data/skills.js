@@ -99,7 +99,7 @@ export const codingProfiles = [
   {
     id: 'github',
     name: 'GitHub',
-    url: 'https://github.com/ayushman-git',
+    url: 'https://github.com/ayushman-c',
     icon: 'github',
     color: '#ffffff',
     stats: { repos: null, followers: null }, // fetched dynamically
