@@ -39,7 +39,7 @@ const HIGHLIGHTS = [
 const handleDownload = async () => {
   try {
     // Track download via backend
-    await fetch('/api/resume/download', { method: 'POST' }).catch(() => {})
+    await fetch((import.meta.env.VITE_API_URL || '') + '/api/resume/download', { method: 'POST' }).catch(() => {})
   } catch { /* silent */ }
 }
 
